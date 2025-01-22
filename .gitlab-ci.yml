@@ -1,0 +1,42 @@
+stages:
+  - test
+  - build
+  - deploy
+
+run-tests:
+  stage: test
+  script:
+    - echo "run tests"
+  only:
+    - main
+    
+docker-build:
+  stage: build
+  image: docker:20.10.17
+  services:
+    - docker:20.10.17-dind
+  variables:
+    #DOCKER_TLS_CERTDIR: "/certs"
+    #DOCKER_HOST: tcp://docker:2375
+    #DOCKER_DRIVER: overlay2
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin 
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA -f ./docker/Dockerfile .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE
+    - docker push $CI_REGISTRY_IMAGE
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  before_script:
+    - chmod 400 $SSH_KEY
+  script:
+    - ssh -o StrictHostKeyChecking=no -i $SSH_KEY root@$SERVER_IP "
+        cd ~/server-docker-compose/jjk-holding &&
+        docker compose pull &&
+        docker compose up -d"
+  only:
+    - main
