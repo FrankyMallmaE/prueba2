@@ -50,8 +50,8 @@ autobind:
 # modelgen, the others will be allowed when binding to fields. Configure them to
 # your liking
 models:
-  User:
-    model: github.com/levelstudio/payroll-4ta-crud/pkg/models.User
+  Product:
+    model: github.com/levelstudio/payroll-4ta-crud/pkg/models.Product
 
   ID:
     model:

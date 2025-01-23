@@ -8,5 +8,5 @@ import (
 )
 
 type Resolver struct {
-	UsersRepo db.UsersRepo
+	ProductsRepo db.ProductsRepo
 }

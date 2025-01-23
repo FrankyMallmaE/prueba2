@@ -25,11 +25,11 @@ func graphqlHandler() gin.HandlerFunc {
 	// NewExecutableSchema and Config are in the generated.go file
 	// Resolver is in the resolver.go file
 	srv := handler.New(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
-		UsersRepo: db.UsersRepo{
-			DB:                 db.DB,
-			CreateUserObserver: map[string]chan *models.User{},
-			UpdateUserObserver: map[string]chan *models.User{},
-			DeleteUserObserver: map[string]chan *models.User{},
+		ProductsRepo: db.ProductsRepo{
+			DB:                    db.DB,
+			CreateProductObserver: map[string]chan *models.Product{},
+			UpdateProductObserver: map[string]chan *models.Product{},
+			DeleteProductObserver: map[string]chan *models.Product{},
 		},
 	}}))
 

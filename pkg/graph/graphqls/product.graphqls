@@ -1,18 +1,17 @@
-type User {
+type Product {
   id: ID!
   name: String!
-  age: String!
-  mayor: String!
+  price: String!
   created_at: String!
   updated_at: String!
 }
 
-input NewUser {
+input NewProduct {
   name: String!
-  age: String!
+  price: String!
 }
 
-input UpdateUser {
+input UpdateProduct {
   name: String
-  age: String
+  price: String
 }

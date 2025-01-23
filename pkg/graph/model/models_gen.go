@@ -5,15 +5,15 @@ package model
 type Mutation struct {
 }
 
-type NewUser struct {
-	Name string `json:"name"`
-	Age  string `json:"age"`
+type NewProduct struct {
+	Name  string `json:"name"`
+	Price string `json:"price"`
 }
 
 type Query struct {
 }
 
-type UpdateUser struct {
-	Name *string `json:"name,omitempty"`
-	Age  *string `json:"age,omitempty"`
+type UpdateProduct struct {
+	Name  *string `json:"name,omitempty"`
+	Price *string `json:"price,omitempty"`
 }

@@ -4,12 +4,12 @@ schema {
 }
 
 type Query {
-  user(id: ID!): User!
-  users: [User!]!
+  product(id: ID!): Product!
+  products: [Product!]!
 }
 
 type Mutation {
-  createUser(input: NewUser!): User!
-  updateUser(id: ID!, input: UpdateUser!): User!
-  deleteUser(id: ID!): User!
+  createProduct(input: NewProduct!): Product!
+  updateProduct(id: ID!, input: UpdateProduct!): Product!
+  deleteProduct(id: ID!): Product!
 }

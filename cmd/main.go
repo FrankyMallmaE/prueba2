@@ -23,8 +23,8 @@ func main() {
 	go func() {
 		// err := server.ListenAndServe()
 		db.DBConnection()
-		
-		db.DB.AutoMigrate(models.User{})
+
+		db.DB.AutoMigrate(models.Product{})
 
 		if err := utils.EnsureDir("files"); err != nil {
 			panic(err)
